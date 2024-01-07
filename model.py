@@ -120,18 +120,18 @@ class DCN(tfrs.Model):
         if self._model_structure == 'stacked':
             x_cross = x_in
             for cross_layer in self._cross_layers:
-                x_cross = cross_layer(x_cross)
+                x_cross = cross_layer(x_in, x_cross)
 
             x_deep = x_cross
             for deep_layer in self._deep_layers:
                 x_deep = deep_layer(x_deep)
-            
+
             x_out = x_deep
 
         else:
             x_cross = x_in
             for cross_layer in self._cross_layers:
-                x_cross = cross_layer(x_cross)
+                x_cross = cross_layer(x_in, x_cross)
 
             x_deep = x_in
             for deep_layer in self._deep_layers:
